@@ -3,6 +3,16 @@ import requests
 from bs4 import BeautifulSoup
 import json
 
+def send_message(token,message):
+    headers = {
+        "Authorization": "Bearer " + token,
+    }
+    files = {
+        "message": (None, message),
+    }
+    res = requests.post("https://notify-api.line.me/api/notify", headers=headers, files=files)
+    return res
+
 def check_stock_akiduki(url):
     sp = BeautifulSoup(requests.get(url).text, "html.parser")
     title = sp.find("title").text.split(":")[0]
@@ -13,8 +23,9 @@ def check_stock_akiduki(url):
 f = open("./config.json", "r")
 conf = json.loads(f.read())
 f.close()
+print(conf)
 
-msg = ""
+msg = "\n"
 for store in conf["stores"]:
     for url in store["item_list"]:
         # 在庫チェック
@@ -28,4 +39,4 @@ for store in conf["stores"]:
             print(f"failed:{e}")
 
 if len(msg) != 0:
-    print(f"{msg}")
+    send_message(conf["line_token"],msg)
