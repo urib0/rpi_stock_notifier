@@ -15,13 +15,17 @@ conf = json.loads(f.read())
 f.close()
 
 msg = ""
-for url in conf["stores"]["item_list"]:
-    # 在庫チェック
-    try:
-        title,stock =  check_stock_akiduki(url)
-        if stock:
-            msg = msg + f"{title}\n{url}\n"
-    except KeyError as e:
-        print(f"failed:Key {e} is not found.")
-    except Exception as e:
-        print(f"failed:{e}")
+for store in conf["stores"]:
+    for url in store["item_list"]:
+        # 在庫チェック
+        try:
+            title,stock =  check_stock_akiduki(url)
+            if stock:
+                msg = msg + f"{title}\n{url}\n"
+        except KeyError as e:
+            print(f"failed:Key {e} is not found.")
+        except Exception as e:
+            print(f"failed:{e}")
+
+if len(msg) != 0:
+    print(f"{msg}")

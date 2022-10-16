@@ -1,9 +1,11 @@
 {
-    "stores": {
-        "store_name": "akiduki",
-        "item_list": [
-            "https://akizukidenshi.com/catalog/g/gM-16834/",
-            "https://akizukidenshi.com/catalog/g/gM-13641/"
-        ]
-    }
+    "stores": [
+        {
+            "store_name": "akiduki",
+            "item_list": [
+                "https://akizukidenshi.com/catalog/g/gM-16834/",
+                "https://akizukidenshi.com/catalog/g/gM-13641/"
+            ]
+        }
+    ]
 }
