@@ -1,5 +1,5 @@
 {
-    "interval": 30,
+    "interval": 60,
     "line_token": "hoge",
     "slack_token": "hoge",
     "slack_channel": "hoge",
@@ -8,10 +8,7 @@
             "store_name": "akiduki",
             "item_list": [
                 "https://akizukidenshi.com/catalog/g/gM-16834/",
-                "https://akizukidenshi.com/catalog/g/gM-15359/",
-                "https://akizukidenshi.com/catalog/g/gM-12958/",
-                "https://akizukidenshi.com/catalog/g/gM-12961/",
-                "https://akizukidenshi.com/catalog/g/gM-13641/"
+                "https://akizukidenshi.com/catalog/g/gM-15359/"
             ]
         },
         {
@@ -19,7 +16,8 @@
             "item_list": [
                 "https://www.switch-science.com/products/6370",
                 "https://www.switch-science.com/products/5680",
-                "https://www.switch-science.com/products/6900"
+                "https://www.switch-science.com/products/5681",
+                "https://www.switch-science.com/products/7600"
             ]
         }
     ]

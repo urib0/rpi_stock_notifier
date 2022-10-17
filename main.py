@@ -49,7 +49,7 @@ while(True):
         conf = json.loads(f.read())
 
     # 在庫チェック&メッセージ作成
-    msg = "\n"
+    msg = ""
     for store in conf["stores"]:
         for url in store["item_list"]:
             # 在庫チェック
@@ -59,7 +59,7 @@ while(True):
                 elif store["store_name"] == "switchscience":
                     title,stocks = check_stock_switchscience(url)
                 if stocks:
-                    msg = msg + f"{title}\n在庫:{stocks}\n{url}\n"
+                    msg = msg + f"\n{title}\n在庫:{stocks}\n{url}"
             except KeyError as e:
                 print(f"failed:Key {e} is not found.")
             except Exception as e:
