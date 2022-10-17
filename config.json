@@ -1,6 +1,8 @@
 {
     "interval": 30,
     "line_token": "hoge",
+    "slack_token": "hgoe",
+    "slack_channel": "hoge",
     "stores": [
         {
             "store_name": "akiduki",

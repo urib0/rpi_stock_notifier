@@ -4,14 +4,27 @@ from bs4 import BeautifulSoup
 import json
 import time
 
-def send_message(token,message):
+def send_line_message(token,message):
+    url = "https://notify-api.line.me/api/notify"
     headers = {
         "Authorization": "Bearer " + token,
     }
     files = {
         "message": (None, message),
     }
-    res = requests.post("https://notify-api.line.me/api/notify", headers=headers, files=files)
+    res = requests.post(url, headers=headers, files=files)
+    return res
+
+def send_slack_message(token,channel,message):
+    url = "https://slack.com/api/chat.postMessage"
+    headers = {
+        "Authorization": "Bearer " + token,
+    }
+    data = {
+        "channel": channel,
+        "text": message
+    }
+    res = requests.post(url, headers=headers, data=data)
     return res
 
 def check_stock_akiduki(url):
@@ -40,10 +53,12 @@ while(True):
             except Exception as e:
                 print(f"failed:{e}")
 
-    # LINE送信
+    # メッセージ送信
     if len(msg) != 0:
-        ret = send_message(conf["line_token"],msg)
+        ret = send_line_message(conf["line_token"],msg)
         print(f"line notifier response:{ret}")
+        ret = send_slack_message(conf["slack_token"],conf["slack_channel"],msg)
+        print(f"slack notifier response:{ret}")
 
     time.sleep(conf["interval"])
 
