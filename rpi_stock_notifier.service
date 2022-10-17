@@ -1,0 +1,13 @@
+[Unit]
+Description=rpi inventory notification service
+After=network.target auditd.service
+
+[Service]
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/work/rpi_stock_notifier
+ExecStart=/home/pi/.pyenv/shims/python3 /home/pi/work/rpi_stock_notifier/main.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

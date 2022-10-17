@@ -1,5 +1,5 @@
-#-*- coding: utf-8 -*-
 #!/usr/bin/env python3
+#-*- coding: utf-8 -*-
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -28,7 +28,7 @@ def send_slack_message(token,channel,message):
     res = requests.post(url, headers=headers, data=data)
     return res
 
-def check_stock_akiduki(url):
+def check_stock_akizuki(url):
     sp = BeautifulSoup(requests.get(url).text, "html.parser")
     title = sp.find("title").text.split(":")[0]
     stock = sp.find_all(class_="cart_tdc_sbn")[0].find("img")
@@ -55,8 +55,8 @@ while(True):
         for url in store["item_list"]:
             # 在庫チェック
             try:
-                if store["store_name"] == "akiduki":
-                    title,stocks =  check_stock_akiduki(url)
+                if store["store_name"] == "akizuki":
+                    title,stocks =  check_stock_akizuki(url)
                 elif store["store_name"] == "switchscience":
                     title,stocks = check_stock_switchscience(url)
                 if stocks:
