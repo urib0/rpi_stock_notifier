@@ -30,9 +30,18 @@ def send_slack_message(token,channel,message):
 def check_stock_akiduki(url):
     sp = BeautifulSoup(requests.get(url).text, "html.parser")
     title = sp.find("title").text.split(":")[0]
-    isStock = False if sp.find_all(class_="cart_tdc_sbn")[0].find("img") is not None else True
-    print(title, isStock)
-    return title, isStock
+    stock = sp.find_all(class_="cart_tdc_sbn")[0].find("img")
+    stock = True if stock is None else False
+    print(title, stock)
+    return title, stock
+
+def check_stock_switchscience(url):
+    sp = BeautifulSoup(requests.get(url).text, "html.parser")
+    title = sp.find("title").text
+    stock = sp.find_all(class_="product-details__block")[7].text.replace("\n","").split(": ")[1]
+    stock = stock if stock != "0" else False
+    print(title, stock)
+    return title, stock
 
 while(True):
     # 設定値読み込み
@@ -45,9 +54,12 @@ while(True):
         for url in store["item_list"]:
             # 在庫チェック
             try:
-                title,stock =  check_stock_akiduki(url)
-                if stock:
-                    msg = msg + f"{title}\n{url}\n"
+                if store["store_name"] == "akiduki":
+                    title,stocks =  check_stock_akiduki(url)
+                elif store["store_name"] == "switchscience":
+                    title,stocks = check_stock_switchscience(url)
+                if stocks:
+                    msg = msg + f"{title}\n在庫:{stocks}\n{url}\n"
             except KeyError as e:
                 print(f"failed:Key {e} is not found.")
             except Exception as e:

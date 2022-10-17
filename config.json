@@ -1,7 +1,7 @@
 {
     "interval": 30,
     "line_token": "hoge",
-    "slack_token": "hgoe",
+    "slack_token": "hoge",
     "slack_channel": "hoge",
     "stores": [
         {
@@ -12,6 +12,14 @@
                 "https://akizukidenshi.com/catalog/g/gM-12958/",
                 "https://akizukidenshi.com/catalog/g/gM-12961/",
                 "https://akizukidenshi.com/catalog/g/gM-13641/"
+            ]
+        },
+        {
+            "store_name": "switchscience",
+            "item_list": [
+                "https://www.switch-science.com/products/6370",
+                "https://www.switch-science.com/products/5680",
+                "https://www.switch-science.com/products/6900"
             ]
         }
     ]
