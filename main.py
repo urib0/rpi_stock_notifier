@@ -1,3 +1,4 @@
+#-*- coding: utf-8 -*-
 #!/usr/bin/env python3
 import requests
 from bs4 import BeautifulSoup
@@ -59,7 +60,7 @@ while(True):
                 elif store["store_name"] == "switchscience":
                     title,stocks = check_stock_switchscience(url)
                 if stocks:
-                    msg = msg + f"\n{title}\n在庫:{stocks}\n{url}"
+                    msg = msg + f"\n{title}\nstock:{stocks}\n{url}"
             except KeyError as e:
                 print(f"failed:Key {e} is not found.")
             except Exception as e:
