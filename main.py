@@ -72,6 +72,9 @@ while(True):
         print(f"line notifier response:{ret}")
         ret = send_slack_message(conf["slack_token"],conf["slack_channel"],msg)
         print(f"slack notifier response:{ret}")
+        sleep_time = conf['interval'] * 10
+    else:
+        sleep_time = conf["interval"]
 
-    time.sleep(conf["interval"])
+    time.sleep(sleep_time)
 
